@@ -18,4 +18,7 @@ Route::get('/', function () {
     return inertia('Home');
 });
 
-Route::resource('/clients', ClientController::class);
+Route::middleware(['guest'])->group(function () {
+	Route::get('/clients', [ClientController::class, 'index'])->name('client.index');
+	Route::get('/clients/create', [ClientController::class, 'create'])->name('client.create');
+});

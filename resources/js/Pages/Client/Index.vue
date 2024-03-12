@@ -4,7 +4,7 @@
 	<div>
 		<div class="d-flex justify-content-between mb-2 mt-2 align-items-center">
 			<input v-model="search" class="form-control w-auto" type="text" placeholder="Pesquisar Cliente">
-			<button class="btn btn-md btn-success">
+			<button class="btn btn-md btn-success" @click="openCreateClientModal">
 				Novo Cliente
 			</button>
 		</div>
@@ -32,11 +32,13 @@
 		</div>
 		<Paginator :data="clients" />
 	</div>
+	<CreateClient />
 </template>
 
 <script setup>
 	import AppHeader from '../../Components/AppHeader.vue';
 	import Paginator from '../../Components/Paginator.vue';
+	import CreateClient from '../../Components/Modal/Client/CreateClient.vue';
 	
 	import { Link, router } from '@inertiajs/vue3';
 	import debounce from 'lodash/debounce';
@@ -55,7 +57,12 @@
 			preserveState: true,
 			replace: true
 		});
-	}, 500));  
+	}, 500));
+	
+	const openCreateClientModal = () => {
+		let myModal = new bootstrap.Modal(document.getElementById('createClientModal'));
+		myModal.show();
+	};
 </script>
 
 <style scoped>
