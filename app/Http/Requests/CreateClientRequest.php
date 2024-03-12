@@ -23,7 +23,7 @@ class CreateClientRequest extends FormRequest
 			'document' => [
 				'required',
 				Rule::unique(Client::class, 'document'),
-				'max:14',
+				'min:11',
 				(new IsValidDocument()),
 				'numeric'
 			],
