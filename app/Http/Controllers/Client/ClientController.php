@@ -10,8 +10,15 @@ class ClientController extends Controller
 {
     public function index(ClientRepository $clientRepo)
     {
+		$searchParam = null;
+
+		if (request()->input('search')) {
+			$searchParam = request()->input('search');
+		}
+
         return inertia('Client/Index', [
-			'clients' => $clientRepo->listAll(),
+			'clients' => $clientRepo->listToIndex($searchParam),
+			'searched' => $searchParam ?? ''
 		]);
     }
 
