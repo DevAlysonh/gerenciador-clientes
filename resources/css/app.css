@@ -1,4 +1,14 @@
 :root {
 	--nav-background-color: #7f00da;
 	--nav-items-color: #380061;
+
+	/* inputs */
+	--input-border-color: #ce89ff;
+	--input-box-shadow: 0 0 9px #c87bff;
+}
+
+.form-control:focus {
+	border-color: var(--input-border-color);
+	outline: none;
+	box-shadow: var(--input-box-shadow);
 }
