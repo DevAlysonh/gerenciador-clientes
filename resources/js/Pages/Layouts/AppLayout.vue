@@ -1,7 +1,7 @@
 <template>
-	<main class="container">
+	<main>
 		<header>
-			<nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container-fluid">
 					<Link class="navbar-brand" href="/">
 						<i class="fa-solid fa-people-roof"></i>
@@ -20,8 +20,10 @@
 				</div>
 			</nav>
 		</header>
-		<article class="row p-5">
-			<slot />
+		<article class="p-5">
+			<div class="container">
+				<slot />
+			</div>
 		</article>
 	</main>
 </template>
