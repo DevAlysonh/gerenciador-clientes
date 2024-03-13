@@ -53,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-		<div v-else>
+		<div v-if="$page.props.flash.success">
 			<div class="modal-body">
 				<div class="bg-info-subtle p-3 rounded">
 					<div class="d-flex flex-column align-items-center">
