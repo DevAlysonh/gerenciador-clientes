@@ -19,11 +19,10 @@ class CreateClientRequest extends FormRequest
         return [
 			'name' => ['required', 'max:60'],
 			'social_name' => ['required', 'max:60'],
-			'birth_date' => ['required', 'date'],
+			'birthdate' => ['required', 'date'],
 			'document' => [
 				'required',
 				Rule::unique(Client::class, 'document'),
-				'min:11',
 				(new IsValidDocument()),
 				'numeric'
 			],

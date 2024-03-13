@@ -36,7 +36,6 @@
 </template>
 
 <script setup>
-	import AppHeader from '../../Components/AppHeader.vue';
 	import Paginator from '../../Components/Paginator.vue';
 	import CreateClient from '../../Components/Modal/Client/CreateClient.vue';
 	

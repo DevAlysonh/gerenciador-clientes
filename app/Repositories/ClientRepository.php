@@ -21,4 +21,21 @@ class ClientRepository
 
 		return $clients;
 	}
+
+	public function saveClient($clientData): bool
+	{
+		if (!$clientData) {
+			return false;
+		}
+
+		$client = new Client();
+
+		$client->fill($clientData);
+
+		strlen($client->document) > 11
+		? $client->setAttribute('type', 'company')
+		: $client->setAttribute('type', 'individual');
+
+		return $client->save();
+	}
 }

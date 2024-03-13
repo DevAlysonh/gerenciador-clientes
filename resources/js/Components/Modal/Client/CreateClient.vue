@@ -1,26 +1,17 @@
 <template>
 	<div class="modal fade" id="createClientModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					<h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Client</h1>
 				</div>
-				<div class="modal-body">
-					TESTANDO MODAL
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Understood</button>
-				</div>
+				<CreateClientForm />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
-
+import CreateClientForm from '../../../Pages/Client/Create.vue';
 </script>
-
-<style lang="scss" scoped></style>
