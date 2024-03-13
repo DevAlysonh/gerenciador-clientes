@@ -31,11 +31,21 @@ class ClientRepository
 		$client = new Client();
 
 		$client->fill($clientData);
-
-		strlen($client->document) > 11
-		? $client->setAttribute('type', 'company')
-		: $client->setAttribute('type', 'individual');
+		$client->defineType();
 
 		return $client->save();
+	}
+
+	public function updateClient(Client $client, array $updateData): bool
+	{
+		$client->update($updateData);
+		$client->defineType();
+
+		return $client->save();
+	}
+
+	public function findOne(int $id): Client
+	{
+		return Client::find($id);
 	}
 }
