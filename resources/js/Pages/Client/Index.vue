@@ -17,13 +17,13 @@
 					{{ client.socialName }}
 				</div>
 				<div id="actions" class="d-flex">
-					<Link href="#">
-						<button class="btn btn-primary me-2 rounded-circle">
+					<Link :href="`/clients/${client.id}`">
+						<button class="btn btn-primary btn-sm me-2 rounded">
 							<i class="fa-solid fa-eye"></i>
 						</button>
 					</Link>
-					<Link href="#">
-						<button class="btn btn-success me-2 rounded-circle">
+					<Link :href="`/clients/edit/${client.id}`">
+						<button class="btn btn-success btn-sm me-2 rounded">
 							<i class="fa-solid fa-pen-to-square"></i>
 						</button>
 					</Link>
