@@ -6,6 +6,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@types/vue-the-mask": "^0.11.5",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0.0",
         "vite": "^5.0.0"
@@ -13,6 +14,8 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.15",
         "@vitejs/plugin-vue": "^5.0.4",
-        "lodash": "^4.17.21"
+        "lodash": "^4.17.21",
+        "vue-mask": "^1.0.0",
+        "vue-the-mask": "^0.11.1"
     }
 }
