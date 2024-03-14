@@ -1,4 +1,5 @@
 <template>
+	<UploadImage :client="client" />
 	<template v-if="$page.props.flash.success">
 		<div class="alert alert-info fs-5">
 			{{ $page.props.flash.success }}
@@ -34,9 +35,25 @@
 
 	<form id="updateForm" @submit.prevent="updateClient">
 		<div class="h-auto p-4 rounded bg-light">
-			<div class=" d-flex flex-column align-items-center">
-				<div class="shadow">
-					<img class="img-thumbnail" src="/public/img/avatar.png" width="150" alt="">
+			<div class="d-flex flex-column align-items-center">
+				<div class="shadow position-relative rounded">
+					<template v-if="$page.props.flash.img_uploaded">
+						{{ setImagePath($page.props.flash.img_uploaded) }}
+						<img class="img-thumbnail" :src="'/img/clients/' + $page.props.flash.img_uploaded" width="150" alt="">
+					</template>
+					<template v-else>
+						<img class="img-thumbnail" :src="'/img/clients/' + (imagePath ? imagePath : 'avatar.png')" width="150" alt="">
+					</template>
+					<template v-if="editable">
+						<div 
+							class="position-absolute rounded top-0 start-0 w-100 h-100 bg-dark opacity-75 d-flex justify-content-center align-items-center d-none cursor-pointer"
+							data-bs-toggle="modal"
+							data-bs-target="#uploadClientImage"
+							title="Alterar Imagem"
+						>
+							<i class="fa-regular fa-image fa-2x text-white"></i>
+						</div>
+					</template>
 				</div>
 				<div class="fs-5">
 					{{ client.social_name }}
@@ -96,7 +113,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<Link as="button" method="delete" :href="`/clients/delete/${client.id}`" data-bs-dismiss="modal" class="btn btn-sm btn-danger">Sim, quero excluir</Link>
+					<Link as="button" method="delete" :href="`/clients/delete/${client.id}`" data-bs-dismiss="modal"
+						class="btn btn-sm btn-danger">Sim, quero excluir</Link>
 				</div>
 			</div>
 		</div>
@@ -106,12 +124,14 @@
 
 <script setup>
 import { Link, router } from '@inertiajs/vue3';
+import UploadImage from '../../Components/Modal/Client/UploadImage.vue';
 import { reactive } from 'vue';
 import { ref } from 'vue';
 
 
 let editable = ref(false);
 let updating = ref(false);
+let imagePath = ref('');
 let props = defineProps({
 	client: Object,
 	clientType: String
@@ -121,7 +141,8 @@ const clientData = reactive({
 	name: props.client.name,
 	social_name: props.client.social_name,
 	birthdate: props.client.birthdate,
-	document: props.client.document
+	document: props.client.document,
+	image: imagePath
 });
 
 function canEditClient() {
@@ -141,6 +162,18 @@ function updateClient() {
 		}
 	});
 }
+
+function setImagePath(path) {
+	console.log(path);
+	imagePath.value = path;
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+	.position-relative:hover .position-absolute {
+		display: flex !important;
+	}
+	.cursor-pointer {
+        cursor: pointer;
+    }
+</style>

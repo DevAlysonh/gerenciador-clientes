@@ -56,6 +56,6 @@ class ClientRepository
 
 	public function findOne(int $id): Client
 	{
-		return Client::find($id);
+		return Client::findOrFail($id);
 	}
 }

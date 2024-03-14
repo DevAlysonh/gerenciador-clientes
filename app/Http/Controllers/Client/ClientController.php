@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Requests\UploadImageRequest;
 use App\Models\Client\Client;
 use App\Repositories\ClientRepository;
 
@@ -29,9 +30,21 @@ class ClientController extends Controller
     }
 
 
-    public function create()
+    public function uploadImage(UploadImageRequest $request)
     {
-        return inertia('Client/Create');
+		if(request()->hasFile('clientImage')) {
+			$image = request()->file('clientImage');
+
+			$ext = $image->extension();
+
+			$imgName = md5($image->getClientOriginalName() . strtotime("now")) . ".$ext";
+
+			$image->move(public_path('img/clients'), $imgName);
+
+			return redirect()->back()->with('img_uploaded', $imgName);
+		}
+
+		return redirect()->back();
     }
 
 
