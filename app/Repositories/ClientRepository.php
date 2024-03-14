@@ -44,6 +44,16 @@ class ClientRepository
 		return $client->save();
 	}
 
+	public function deleteClient(int $id): string
+	{
+		$client = Client::find($id);
+		$clientName = $client->social_name;
+
+		$client->delete();
+
+		return "O perfil de $clientName foi deletado permanentemente.";
+	}
+
 	public function findOne(int $id): Client
 	{
 		return Client::find($id);
