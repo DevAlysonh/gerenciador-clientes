@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
 				'success' => fn () => $request->session()->get('success'),
 				'fail' => fn () => $request->session()->get('fail'),
 				'no_content' => $request->session()->get('no_content'),
+				'deleted' => $request->session()->get('deleted'),
 			],
         ]);
     }

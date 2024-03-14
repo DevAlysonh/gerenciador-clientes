@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Enums\ClientType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Models\Client\Client;
 use App\Repositories\ClientRepository;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -83,12 +82,14 @@ class ClientController extends Controller
 			return redirect()->back()->with('success', 'Os dados do cliente foram atualizados.');
 		}
 
-		return redirect()->back()->with('fail',	'Não foi possível atualizar os dados do cliente.');
+		return redirect()->back()->with('fail',	'Nenhum dado para atualizar.');
     }
 
 
     public function destroy(string $id)
     {
-        //
+        $resultMessage = $this->clientRepo->deleteClient($id);
+
+		return to_route('client.index')->with('deleted', $resultMessage);
     }
 }

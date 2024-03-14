@@ -23,4 +23,5 @@ Route::middleware(['guest'])->group(function () {
 	Route::post('/clients', [ClientController::class, 'store'])->name('client.store');
 	Route::get('/clients/{clientId}', [ClientController::class, 'show'])->name('client.show');
 	Route::patch('/clients/{clientId}', [ClientController::class, 'update'])->name('client.update');
+	Route::delete('/clients/delete/{clientId}', [ClientController::class, 'destroy'])->name('client.delete');
 });
