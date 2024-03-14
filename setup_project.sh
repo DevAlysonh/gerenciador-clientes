@@ -18,11 +18,12 @@ cp .env.example .env
 
 echo "DB_CONNECTION=sqlite" >> .env
 echo "DB_HOST=$absolut_path" >> .env
+echo "APP_URL=http://localhost:8000" >> .env
 
 docker-compose up -d
 
 docker-compose exec -it app composer install
-
+docker-compose exec -it app php artisan key:generate
 docker-compose exec -it app php artisan migrate
 
 #give permissions:

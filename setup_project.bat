@@ -26,6 +26,7 @@ copy .env.example .env
 REM Adiciona as linhas ao arquivo .env
 echo DB_CONNECTION=sqlite >> .env
 echo DB_HOST=%absolut_path% >> .env
+echo APP_URL=http://localhost:8000 >> .env
 
 REM Inicia os contêineres
 docker-compose up -d
@@ -35,6 +36,9 @@ docker-compose exec -it app composer install
 
 REM Executa as migrations
 docker-compose exec -it app php artisan migrate
+
+REM Generate Key
+docker-compose exec -it app php artisan key:generate
 
 REM Dá permissões aos diretórios
 icacls database /grant Everyone:(OI)(CI)F >nul 2>nul
