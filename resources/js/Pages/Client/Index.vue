@@ -19,24 +19,31 @@
 			</button>
 		</div>
 		<div class="row bg-light h-auto p-2 rounded align-items-center pt-3 pb-3 row-gap-3">
-			<div v-for="client in clients.data" :key="client.id"
-				class="card-body shadow bg-white d-flex p-1 align-items-center rounded justify-content-between">
-				<div class="ms-3 w-auto">
-					<img class="img-thumbnail" :src="'/img/clients/' + (client.image ? client.image : 'avatar.png')" width="75" alt="">
+			<template v-if="clients.data.length > 0">
+				<div v-for="client in clients.data" :key="client.id"
+					class="card-body shadow bg-white d-flex p-1 align-items-center rounded justify-content-between">
+					<div class="ms-3 w-auto">
+						<img class="img-thumbnail" :src="'/img/clients/' + (client.image ? client.image : 'avatar.png')" width="75" alt="">
+					</div>
+					<div>
+						{{ client.socialName }}
+					</div>
+					<div id="actions" class="d-flex me-3" title="Visualizar Perfil">
+						<Link :href="`/clients/${client.id}`">
+						<button class="btn btn-primary btn-sm me-2 rounded">
+							<i class="fa-solid fa-eye"></i>
+						</button>
+						</Link>
+					</div>
 				</div>
-				<div>
-					{{ client.socialName }}
-				</div>
-				<div id="actions" class="d-flex me-3" title="Visualizar Perfil">
-					<Link :href="`/clients/${client.id}`">
-					<button class="btn btn-primary btn-sm me-2 rounded">
-						<i class="fa-solid fa-eye"></i>
-					</button>
-					</Link>
-				</div>
+			</template>
+			<div v-else class="d-flex justify-content-center">
+				<h5>Parece que você ainda não tem nenhum cliente cadastrado.</h5>
 			</div>
 		</div>
-		<Paginator :data="clients" />
+		<template v-if="clients.data.length > 0">
+			<Paginator :data="clients" />
+		</template>
 	</div>
 	<CreateClient />
 </template>
