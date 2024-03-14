@@ -25,4 +25,9 @@ docker-compose exec -it app composer install
 
 docker-compose exec -it app php artisan migrate
 
+#give permissions:
+chmod -R a+w ./database
+chmod -R a+w ./storage
+chmod -R a+w ./public
+
 npm install && npm run dev
