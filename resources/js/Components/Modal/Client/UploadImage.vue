@@ -4,7 +4,8 @@
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="uploadClientImageLabel">Carregar Nova Foto</h1>
+					<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<form @submit.prevent="submit">
 					<div class="container">
@@ -19,13 +20,16 @@
 								{{ form.progress.percentage }}%
 							</progress>
 						</div>
-						<div class="mt-2 mb-2">
-							<span v-if="form.errors.client_image" class="text text-danger" v-text="form.errors.client_image"></span>
+						<div class="mt-2 mb-2 d-flex justify-content-center">
+							<span v-if="form.errors.clientImage" class="text text-danger"
+								v-text="form.errors.clientImage"></span>
 						</div>
 						<div class="d-flex align-items-center p-2 justify-content-center">
-							<button type="submit" class="btn btn-success btn-sm" data-bs-dismiss="modal">
-								Usar essa imagem
-							</button>
+							<template v-if="!modalClose">
+								<button type="submit" class="btn btn-success btn-sm">
+									Usar essa imagem
+								</button>
+							</template>
 						</div>
 					</div>
 				</form>
@@ -39,13 +43,18 @@ import { useForm } from '@inertiajs/vue3'
 import { ref } from 'vue';
 
 const imgPreview = ref(null);
+let modalClose = ref(false);
 
 const form = useForm({
 	clientImage: null,
 })
 
 function submit() {
-	form.post('/clients/image/upload');
+	form.post('/clients/image/upload', {
+		onSuccess() {
+			modalClose.value = true;
+		}
+	});
 }
 
 function load(event) {

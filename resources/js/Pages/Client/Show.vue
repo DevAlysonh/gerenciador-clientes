@@ -164,7 +164,6 @@ function updateClient() {
 }
 
 function setImagePath(path) {
-	console.log(path);
 	imagePath.value = path;
 }
 </script>
