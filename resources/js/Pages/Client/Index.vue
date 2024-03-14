@@ -22,7 +22,7 @@
 			<div v-for="client in clients.data" :key="client.id"
 				class="card-body shadow bg-white d-flex p-1 align-items-center rounded justify-content-between">
 				<div class="ms-3 w-auto">
-					<img class="img-thumbnail" src="/public/img/avatar.png" width="75" alt="">
+					<img class="img-thumbnail" :src="'/img/clients/' + (client.image ? client.image : 'avatar.png')" width="75" alt="">
 				</div>
 				<div>
 					{{ client.socialName }}

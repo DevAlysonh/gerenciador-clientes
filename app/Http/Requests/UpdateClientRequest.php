@@ -20,6 +20,7 @@ class UpdateClientRequest extends FormRequest
 			'name' => ['required', 'max:60'],
 			'social_name' => ['required', 'max:60'],
 			'birthdate' => ['required', 'date'],
+			'image' => ['string'],
 			'document' => [
 				'required',
 				Rule::unique(Client::class, 'document')->ignore($this->route('clientId')),
