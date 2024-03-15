@@ -3,7 +3,7 @@
 Este é um simples projeto de um gerenciador de clientes. Nele, por enquanto, é possível criar, editar, listar os clientes, e visualizar um perfil.
 Eu optei por usar Laravel + InertiaJs + VueJs. Essa stack proprociona algumas facilidades na reatividade da aplicação, além de facilitar a construção de SPA.
 
-- Contruí alguns componentes para as visualizações, e rotas para as features necessárias (basicamente o CRUD);
+- Construí alguns componentes para as visualizações, e rotas para as features necessárias (basicamente o CRUD);
 - Utilizei algumas classes de validação personalizadas;
 - Criei um Repository para tratar da persistência dos dados na tabela de clientes;
 - Como é algo muito simples, por hora, decidi usar um db.sqlite;
@@ -27,7 +27,11 @@ Eu optei por usar Laravel + InertiaJs + VueJs. Essa stack proprociona algumas fa
   
   ```
   chmod +x setup_project.sh
-- Pronto, esse script sh deve se encarregar de fazer todo o build e configurações necessárias para que o sistema funcione no seu ambiente local.
+- 3 - Execute o script `setup_project.sh`:
+
+   ```
+   ./setup_project.sh
+- Pronto, esse script deve se encarregar de fazer todo o build e configurações necessárias para que o sistema funcione no seu ambiente local.
 
 ### Se estiver usando Windows:
 #### IMPORTANTE: Você deve ter o Docker e o Node + NPM instalados!
